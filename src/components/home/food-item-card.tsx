@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import {
   Card,
@@ -32,8 +33,8 @@ export function FoodItemCard({ dishName, amount, imageUrl, imageHint }: FoodItem
         </div>
       </CardHeader>
       <CardContent className="p-4 flex-grow">
-        <CardTitle className="text-xl mb-1">{dishName}</CardTitle>
-        <CardDescription className="text-lg font-semibold text-primary">{amount}</CardDescription>
+        <CardTitle className="text-2xl mb-1">{dishName}</CardTitle>
+        <CardDescription className="text-xl font-semibold text-primary">{amount}</CardDescription>
       </CardContent>
       <CardFooter className="p-4 pt-0">
         <Button className="w-full" variant="default">
