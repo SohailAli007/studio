@@ -29,7 +29,7 @@ const FloatingDishesBackground: React.FC = () => {
         emoji: DISH_EMOJIS[Math.floor(Math.random() * DISH_EMOJIS.length)],
         x: Math.random() * 100, // vw
         y: Math.random() * 100, // vh
-        size: Math.random() * 24 + 20, // px
+        size: Math.random() * 30 + 25, // px (Increased size: 25px to 55px)
         speedX: (Math.random() - 0.5) * 0.1,
         speedY: (Math.random() - 0.5) * 0.1,
         rotation: Math.random() * 360,
@@ -87,7 +87,7 @@ const FloatingDishesBackground: React.FC = () => {
     <div
       ref={containerRef}
       className={cn(
-        "fixed inset-0 -z-10 overflow-hidden bg-gradient-to-br from-background via-[hsl(0,50%,94%)] to-[hsl(355,50%,92%)]"
+        "fixed inset-0 -z-10 overflow-hidden bg-gradient-to-br from-background via-[hsl(200,30%,92%)] to-[hsl(200,30%,89%)] blur-sm"
       )}
       aria-hidden="true"
     >

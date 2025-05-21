@@ -8,7 +8,7 @@ body {
 
 @layer base {
   :root {
-    --background: 0 50% 97%; /* #FAF0F0 */
+    --background: 200 30% 95%; /* Light Cool Gray - Updated for login page theme */
     --foreground: 0 0% 3.9%; /* Default dark for contrast */
 
     --card: 0 0% 100%; /* White cards */
@@ -32,8 +32,8 @@ body {
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 355 30% 88%; /* Adjusted for theme */
-    --input: 355 30% 92%; /* Adjusted for theme */
+    --border: 200 20% 88%; /* Adjusted for new theme */
+    --input: 200 20% 92%; /* Adjusted for new theme */
     --ring: 355 78% 56%; /* Primary color for focus rings */
 
     --chart-1: 12 76% 61%;
@@ -55,13 +55,13 @@ body {
   }
 
   .dark {
-    --background: 0 0% 3.9%;
+    --background: 200 10% 10%; /* Dark Cool Gray for dark mode */
     --foreground: 0 0% 98%;
 
-    --card: 0 0% 3.9%;
+    --card: 200 10% 10%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 3.9%;
+    --popover: 200 10% 10%;
     --popover-foreground: 0 0% 98%;
 
     --primary: 355 78% 56%; /* #E63946 */
@@ -79,8 +79,8 @@ body {
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 355 30% 20%; /* Adjusted for dark theme */
-    --input: 355 30% 25%; /* Adjusted for dark theme */
+    --border: 200 15% 25%; /* Adjusted for dark theme */
+    --input: 200 15% 30%; /* Adjusted for dark theme */
     --ring: 355 78% 56%;
 
     --chart-1: 220 70% 50%;
