@@ -49,7 +49,7 @@ export default function HomeLayout({ children }: PropsWithChildren) {
                 <SidebarMenuItem>
                   <SidebarMenuButton
                     asChild
-                    tooltip={{content: "Profile", side: "right", align: "center"}} // Tooltip on the right
+                    tooltip={{content: "Profile", side: "right", align: "center"}}
                     isActive={pathname === '/home/profile' || pathname.startsWith('/home/cart') || pathname.startsWith('/home/orders')}
                   >
                     <Link href="/home/profile">
@@ -66,11 +66,11 @@ export default function HomeLayout({ children }: PropsWithChildren) {
           </Sidebar>
 
           {/* Main content area */}
-          <SidebarInset className="flex flex-col">
-            <div className="flex-grow">
+          <SidebarInset className="flex flex-col h-full overflow-hidden"> {/* Ensures SidebarInset fits its grid cell and clips its own overflow */}
+            <div className="flex-grow overflow-y-auto"> {/* This div will scroll its content if it's too long */}
               {children}
             </div>
-            <footer className="py-8 text-center text-muted-foreground border-t mt-auto">
+            <footer className="py-8 text-center text-muted-foreground border-t mt-auto"> {/* mt-auto pushes footer down */}
               © {currentYear !== null ? currentYear : "..."} Gastronomic Getaway. All rights reserved.
             </footer>
           </SidebarInset>
@@ -79,3 +79,4 @@ export default function HomeLayout({ children }: PropsWithChildren) {
     </SidebarProvider>
   );
 }
+
