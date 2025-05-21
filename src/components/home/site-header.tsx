@@ -1,9 +1,10 @@
+
 "use client";
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { ChefHat, LogOut } from 'lucide-react';
+import { ChefHat, LogOut, ShoppingCart, UserCircle, Package } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 export function SiteHeader() {
@@ -26,10 +27,27 @@ export function SiteHeader() {
           <ChefHat size={32} />
           <span>Gastronomic Getaway</span>
         </Link>
-        <Button variant="ghost" onClick={handleLogout}>
-          <LogOut className="mr-2 h-5 w-5" />
-          Logout
-        </Button>
+        <div className="flex items-center space-x-2">
+          <Link href="/home/cart" passHref>
+            <Button variant="ghost" size="icon" aria-label="Cart">
+              <ShoppingCart className="h-5 w-5" />
+            </Button>
+          </Link>
+          <Link href="/home/orders" passHref>
+            <Button variant="ghost" size="icon" aria-label="Orders">
+              <Package className="h-5 w-5" />
+            </Button>
+          </Link>
+          <Link href="/home/profile" passHref>
+            <Button variant="ghost" size="icon" aria-label="Profile">
+              <UserCircle className="h-5 w-5" />
+            </Button>
+          </Link>
+          <Button variant="ghost" onClick={handleLogout}>
+            <LogOut className="mr-2 h-5 w-5" />
+            Logout
+          </Button>
+        </div>
       </div>
     </header>
   );
