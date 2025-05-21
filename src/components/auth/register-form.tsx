@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Lock, User } from "lucide-react";
 import React from "react";
+import { cn } from "@/lib/utils";
 
 const registerFormSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -60,10 +61,14 @@ export function RegisterForm() {
   }
 
   return (
-    <Card className="w-full max-w-md shadow-xl">
+    <Card className={cn(
+      "w-full max-w-md shadow-xl",
+      "bg-card/80 backdrop-blur-lg", // Semi-transparent, blurred background
+      "border-white/20" // Optional: subtle border
+    )}>
       <CardHeader>
-        <CardTitle className="text-2xl">Create an Account</CardTitle>
-        <CardDescription>Enter your details to register.</CardDescription>
+        <CardTitle className="text-2xl text-card-foreground">Create an Account</CardTitle>
+        <CardDescription className="text-card-foreground/80">Enter your details to register.</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -73,11 +78,15 @@ export function RegisterForm() {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Full Name</FormLabel>
+                  <FormLabel className="text-card-foreground/90">Full Name</FormLabel>
                   <div className="relative">
                     <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                     <FormControl>
-                      <Input placeholder="John Doe" {...field} className="pl-10" />
+                      <Input 
+                        placeholder="John Doe" 
+                        {...field} 
+                        className="pl-10 bg-input/70 placeholder:text-muted-foreground/80 text-foreground" 
+                      />
                     </FormControl>
                   </div>
                   <FormMessage />
@@ -89,11 +98,16 @@ export function RegisterForm() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel className="text-card-foreground/90">Email</FormLabel>
                    <div className="relative">
                     <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                     <FormControl>
-                      <Input type="email" placeholder="your@email.com" {...field} className="pl-10" />
+                      <Input 
+                        type="email" 
+                        placeholder="your@email.com" 
+                        {...field} 
+                        className="pl-10 bg-input/70 placeholder:text-muted-foreground/80 text-foreground" 
+                      />
                     </FormControl>
                   </div>
                   <FormMessage />
@@ -105,11 +119,16 @@ export function RegisterForm() {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel className="text-card-foreground/90">Password</FormLabel>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                     <FormControl>
-                      <Input type={showPassword ? "text" : "password"} placeholder="••••••••" {...field} className="pl-10 pr-10" />
+                      <Input 
+                        type={showPassword ? "text" : "password"} 
+                        placeholder="••••••••" 
+                        {...field} 
+                        className="pl-10 pr-10 bg-input/70 placeholder:text-muted-foreground/80 text-foreground" 
+                      />
                     </FormControl>
                      <button
                       type="button"
@@ -132,11 +151,16 @@ export function RegisterForm() {
               name="confirmPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Confirm Password</FormLabel>
+                  <FormLabel className="text-card-foreground/90">Confirm Password</FormLabel>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                     <FormControl>
-                      <Input type={showConfirmPassword ? "text" : "password"} placeholder="••••••••" {...field} className="pl-10 pr-10" />
+                      <Input 
+                        type={showConfirmPassword ? "text" : "password"} 
+                        placeholder="••••••••" 
+                        {...field} 
+                        className="pl-10 pr-10 bg-input/70 placeholder:text-muted-foreground/80 text-foreground" 
+                      />
                     </FormControl>
                      <button
                       type="button"

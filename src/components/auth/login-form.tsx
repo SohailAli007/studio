@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Lock } from "lucide-react";
 import React from "react";
+import { cn } from "@/lib/utils";
 
 const loginFormSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
@@ -52,10 +53,14 @@ export function LoginForm() {
   }
 
   return (
-    <Card className="w-full max-w-md shadow-xl">
+    <Card className={cn(
+      "w-full max-w-md shadow-xl",
+      "bg-card/80 backdrop-blur-lg", // Semi-transparent, blurred background
+      "border-white/20" // Optional: subtle border
+    )}>
       <CardHeader>
-        <CardTitle className="text-2xl">Login</CardTitle>
-        <CardDescription>Enter your credentials to access your account.</CardDescription>
+        <CardTitle className="text-2xl text-card-foreground">Login</CardTitle>
+        <CardDescription className="text-card-foreground/80">Enter your credentials to access your account.</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -65,11 +70,16 @@ export function LoginForm() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel className="text-card-foreground/90">Email</FormLabel>
                   <div className="relative">
                     <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                     <FormControl>
-                      <Input type="email" placeholder="your@email.com" {...field} className="pl-10" />
+                      <Input 
+                        type="email" 
+                        placeholder="your@email.com" 
+                        {...field} 
+                        className="pl-10 bg-input/70 placeholder:text-muted-foreground/80 text-foreground" 
+                      />
                     </FormControl>
                   </div>
                   <FormMessage />
@@ -81,11 +91,16 @@ export function LoginForm() {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel className="text-card-foreground/90">Password</FormLabel>
                    <div className="relative">
                     <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                     <FormControl>
-                      <Input type={showPassword ? "text" : "password"} placeholder="••••••••" {...field} className="pl-10 pr-10" />
+                      <Input 
+                        type={showPassword ? "text" : "password"} 
+                        placeholder="••••••••" 
+                        {...field} 
+                        className="pl-10 pr-10 bg-input/70 placeholder:text-muted-foreground/80 text-foreground" 
+                      />
                     </FormControl>
                     <button
                       type="button"
