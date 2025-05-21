@@ -67,7 +67,7 @@ export default function HomeLayout({ children }: PropsWithChildren) {
 
           {/* Main content area */}
           <SidebarInset className="flex flex-col h-full overflow-hidden"> {/* Ensures SidebarInset fits its grid cell and clips its own overflow */}
-            <div className="flex-grow overflow-y-auto"> {/* This div will scroll its content if it's too long */}
+            <div className="flex flex-col flex-grow overflow-y-auto"> {/* This div will scroll its content if it's too long, and acts as a flex column for its children */}
               {children}
             </div>
             <footer className="py-8 text-center text-muted-foreground border-t mt-auto"> {/* mt-auto pushes footer down */}
