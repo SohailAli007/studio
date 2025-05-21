@@ -1,4 +1,4 @@
-import { SiteHeader } from "@/components/home/site-header";
+
 import { HeaderOffers } from "@/components/home/header-offers";
 import { FoodItemCard } from "@/components/home/food-item-card";
 
@@ -13,8 +13,7 @@ const foodItems = [
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <SiteHeader />
+    <>
       <HeaderOffers />
       <main className="flex-grow container mx-auto p-4 sm:p-6 md:p-8">
         <h2 className="text-3xl font-bold my-8 text-center text-foreground">
@@ -32,9 +31,6 @@ export default function HomePage() {
           ))}
         </div>
       </main>
-      <footer className="py-8 text-center text-muted-foreground border-t">
-        © {new Date().getFullYear()} Gastronomic Getaway. All rights reserved.
-      </footer>
-    </div>
+    </>
   );
 }
