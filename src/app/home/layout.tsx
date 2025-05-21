@@ -16,7 +16,7 @@ import {
   SidebarInset,
 } from '@/components/ui/sidebar';
 import { SiteHeader } from '@/components/home/site-header';
-import { ShoppingCart, UserCircle, Package, ChefHat } from 'lucide-react';
+import { UserCircle, ChefHat } from 'lucide-react';
 
 export default function HomeLayout({ children }: PropsWithChildren) {
   const pathname = usePathname();
@@ -30,8 +30,8 @@ export default function HomeLayout({ children }: PropsWithChildren) {
     <SidebarProvider defaultOpen={true}>
       <div className="flex flex-col min-h-screen">
         <SiteHeader />
-        <div className="flex flex-1 md:grid md:grid-cols-[1fr_auto]"> {/* Updated grid columns */}
-          <SidebarInset className="flex flex-col"> {/* SidebarInset for main content area */}
+        <div className="flex flex-1 md:grid md:grid-cols-[1fr_auto]">
+          <SidebarInset className="flex flex-col">
             <div className="flex-grow">
               {children}
             </div>
@@ -40,7 +40,7 @@ export default function HomeLayout({ children }: PropsWithChildren) {
             </footer>
           </SidebarInset>
 
-          <Sidebar side="right" collapsible="icon" className="hidden md:flex"> {/* Updated side prop */}
+          <Sidebar side="right" collapsible="icon" className="hidden md:flex">
             <SidebarHeader className="p-3 border-b">
               <Link href="/home" className="flex items-center space-x-2 text-lg font-semibold text-primary group-data-[collapsible=icon]:hidden">
                 <ChefHat size={28} />
@@ -55,32 +55,8 @@ export default function HomeLayout({ children }: PropsWithChildren) {
                 <SidebarMenuItem>
                   <SidebarMenuButton 
                     asChild 
-                    tooltip={{content: "Cart", side: "left", align: "center"}}  /* Updated tooltip side */
-                    isActive={pathname === '/home/cart'}
-                  >
-                    <Link href="/home/cart">
-                      <ShoppingCart />
-                      <span>Cart</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-                <SidebarMenuItem>
-                  <SidebarMenuButton 
-                    asChild 
-                    tooltip={{content: "Orders", side: "left", align: "center"}} /* Updated tooltip side */
-                    isActive={pathname === '/home/orders'}
-                  >
-                    <Link href="/home/orders">
-                      <Package />
-                      <span>Orders</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-                <SidebarMenuItem>
-                  <SidebarMenuButton 
-                    asChild 
-                    tooltip={{content: "Profile", side: "left", align: "center"}} /* Updated tooltip side */
-                    isActive={pathname === '/home/profile'}
+                    tooltip={{content: "Profile", side: "left", align: "center"}}
+                    isActive={pathname === '/home/profile' || pathname.startsWith('/home/cart') || pathname.startsWith('/home/orders')}
                   >
                     <Link href="/home/profile">
                       <UserCircle />
@@ -94,7 +70,6 @@ export default function HomeLayout({ children }: PropsWithChildren) {
               {/* Footer content for sidebar, e.g. app version or small logout */}
             </SidebarFooter>
           </Sidebar>
-          {/* Mobile sidebar is handled by Sheet within SidebarProvider based on useIsMobile hook */}
         </div>
       </div>
     </SidebarProvider>
