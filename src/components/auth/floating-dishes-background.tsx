@@ -34,7 +34,7 @@ const FloatingDishesBackground: React.FC = () => {
         speedX: (Math.random() - 0.5) * 0.1,
         speedY: (Math.random() - 0.5) * 0.1,
         rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() * 0.15) + 0.1, // Ensures clockwise rotation, speed between 0.1 and 0.25 deg/frame
+        rotationSpeed: (Math.random() * 0.1) + 0.15, // Ensures clockwise rotation, speed between 0.15 and 0.25 deg/frame
       };
     };
 
