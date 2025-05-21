@@ -27,7 +27,7 @@ export default function HomeLayout({ children }: PropsWithChildren) {
   }, []);
 
   return (
-    <SidebarProvider defaultOpen={true}>
+    <SidebarProvider defaultOpen={false}> {/* Changed defaultOpen to false */}
       <div className="flex flex-col min-h-screen">
         <SiteHeader />
         <div className="flex flex-1 md:grid md:grid-cols-[1fr_auto]">
@@ -53,8 +53,8 @@ export default function HomeLayout({ children }: PropsWithChildren) {
             <SidebarContent className="p-2">
               <SidebarMenu>
                 <SidebarMenuItem>
-                  <SidebarMenuButton 
-                    asChild 
+                  <SidebarMenuButton
+                    asChild
                     tooltip={{content: "Profile", side: "left", align: "center"}}
                     isActive={pathname === '/home/profile' || pathname.startsWith('/home/cart') || pathname.startsWith('/home/orders')}
                   >
