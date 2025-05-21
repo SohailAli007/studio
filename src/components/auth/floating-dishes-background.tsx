@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -33,7 +34,7 @@ const FloatingDishesBackground: React.FC = () => {
         speedX: (Math.random() - 0.5) * 0.1,
         speedY: (Math.random() - 0.5) * 0.1,
         rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() - 0.5) * 0.2,
+        rotationSpeed: (Math.random() * 0.15) + 0.1, // Ensures clockwise rotation, speed between 0.1 and 0.25 deg/frame
       };
     };
 
@@ -65,7 +66,7 @@ const FloatingDishesBackground: React.FC = () => {
             y: newY,
             speedX: newSpeedX,
             speedY: newSpeedY,
-            rotation: dish.rotation + dish.rotationSpeed,
+            rotation: (dish.rotation + dish.rotationSpeed) % 360, // Keep rotation within 0-360 for sanity, though CSS handles overflow
           };
         })
       );
@@ -87,7 +88,7 @@ const FloatingDishesBackground: React.FC = () => {
     <div
       ref={containerRef}
       className={cn(
-        "fixed inset-0 -z-10 overflow-hidden bg-gradient-to-br from-background via-[hsl(200,30%,92%)] to-[hsl(200,30%,89%)]" // Removed blur-sm
+        "fixed inset-0 -z-10 overflow-hidden bg-gradient-to-br from-background via-[hsl(200,30%,92%)] to-[hsl(200,30%,89%)]"
       )}
       aria-hidden="true"
     >
