@@ -1,26 +1,19 @@
 
 "use client";
 
-import React, { useState, useEffect, type PropsWithChildren } from 'react';
+import React, { type PropsWithChildren } from 'react';
 import { SiteHeader } from '@/components/home/site-header';
+import { SiteFooter } from '@/components/home/site-footer'; // Import the new footer
 
 export default function HomeLayout({ children }: PropsWithChildren) {
-  const [currentYear, setCurrentYear] = useState<number | null>(null);
-
-  useEffect(() => {
-    setCurrentYear(new Date().getFullYear());
-  }, []);
-
   return (
     <div className="flex flex-col min-h-screen">
       <SiteHeader />
-      <div className="flex flex-1 flex-col"> {/* Simplified main content wrapper */}
-        <div className="flex flex-col flex-grow overflow-y-auto">
+      <div className="flex flex-1 flex-col">
+        <main className="flex-grow overflow-y-auto"> {/* Ensure main content can scroll */}
           {children}
-        </div>
-        <footer className="py-8 text-center text-muted-foreground border-t mt-auto">
-          © {currentYear !== null ? currentYear : "..."} Gastronomic Getaway. All rights reserved.
-        </footer>
+        </main>
+        <SiteFooter /> {/* Use the new SiteFooter component */}
       </div>
     </div>
   );
