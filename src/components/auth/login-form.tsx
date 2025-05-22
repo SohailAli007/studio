@@ -1,3 +1,4 @@
+
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -55,7 +56,7 @@ export function LoginForm() {
   return (
     <Card className={cn(
       "w-full max-w-md shadow-xl",
-      "bg-card/80 backdrop-blur-lg", // Semi-transparent, blurred background
+      "bg-gradient-to-br from-[hsl(var(--card)/0.82)] via-[hsl(var(--card)/0.75)] to-[hsl(var(--card)/0.82)] backdrop-blur-lg", // Semi-transparent, blurred, gradient background
       "border-white/20" // Optional: subtle border
     )}>
       <CardHeader>
