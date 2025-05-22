@@ -34,7 +34,7 @@ const FloatingDishesBackground: React.FC = () => {
         speedX: (Math.random() - 0.5) * 0.1,
         speedY: (Math.random() - 0.5) * 0.1,
         rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() * 0.2) + 0.3, // Increased speed: e.g., 0.3 to 0.5 deg/frame
+        rotationSpeed: (Math.random() * 0.3) + 0.5, // Adjusted speed: e.g., 0.5 to 0.8 deg/frame
       };
     };
 
@@ -88,7 +88,7 @@ const FloatingDishesBackground: React.FC = () => {
     <div
       ref={containerRef}
       className={cn(
-        "fixed inset-0 -z-10 overflow-hidden bg-gradient-to-br from-background via-[hsl(200,30%,92%)] to-[hsl(200,30%,89%)]"
+        "fixed inset-0 overflow-hidden bg-gradient-to-br from-background via-[hsl(200,30%,92%)] to-[hsl(200,30%,89%)]"
       )}
       aria-hidden="true"
     >
