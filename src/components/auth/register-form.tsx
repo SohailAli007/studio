@@ -64,7 +64,7 @@ export function RegisterForm() {
   return (
     <Card className={cn(
       "w-full max-w-md shadow-xl",
-      "bg-gradient-to-br from-[hsl(var(--card)/0.82)] via-[hsl(var(--card)/0.75)] to-[hsl(var(--card)/0.82)] backdrop-blur-lg", // Semi-transparent, blurred, gradient background
+      "bg-gradient-to-br from-[hsl(var(--card)/0.65)] via-[hsl(var(--card)/0.55)] to-[hsl(var(--card)/0.65)] backdrop-blur-lg", // Increased transparency
       "border-white/20" // Optional: subtle border
     )}>
       <CardHeader>
