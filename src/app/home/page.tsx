@@ -109,31 +109,35 @@ export default function HomePage() {
   };
 
   return (
-    <main className="flex-grow container mx-auto p-4 sm:p-6 md:p-8">
+    <main className="flex-grow"> {/* Removed container classes from here */}
       {!selectedCategory && !selectedItem && (
         <>
           <HeaderOffers />
-          <div className="my-8 text-center">
-            <h1 className="text-4xl font-bold mb-4 text-foreground">Our Delicious Menu</h1>
-            <p className="text-lg text-muted-foreground">Explore our wide range of dishes crafted with the freshest ingredients.</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {menuData.map((category) => (
-              <Button
-                key={category.name}
-                onClick={() => handleCategorySelect(category)}
-                variant="outline"
-                className="h-20 text-xl shadow-md hover:shadow-lg transition-shadow"
-              >
-                {category.name}
-              </Button>
-            ))}
+          {/* Added a new div with container classes for the content below HeaderOffers */}
+          <div className="container mx-auto p-4 sm:p-6 md:p-8">
+            <div className="my-8 text-center">
+              <h1 className="text-4xl font-bold mb-4 text-foreground">Our Delicious Menu</h1>
+              <p className="text-lg text-muted-foreground">Explore our wide range of dishes crafted with the freshest ingredients.</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {menuData.map((category) => (
+                <Button
+                  key={category.name}
+                  onClick={() => handleCategorySelect(category)}
+                  variant="outline"
+                  className="h-20 text-xl shadow-md hover:shadow-lg transition-shadow"
+                >
+                  {category.name}
+                </Button>
+              ))}
+            </div>
           </div>
         </>
       )}
 
       {selectedCategory && !selectedItem && (
-        <>
+         // Added a new div with container classes for this view
+        <div className="container mx-auto p-4 sm:p-6 md:p-8">
           <Button onClick={handleBackToCategories} variant="ghost" className="mb-6">
             <ChevronLeft className="mr-2 h-5 w-5" /> Back to Categories
           </Button>
@@ -163,11 +167,12 @@ export default function HomePage() {
               </Card>
             ))}
           </div>
-        </>
+        </div>
       )}
 
       {selectedItem && selectedCategory && (
-        <>
+        // Added a new div with container classes for this view
+        <div className="container mx-auto p-4 sm:p-6 md:p-8">
           <Button onClick={handleBackToItems} variant="ghost" className="mb-6">
             <ChevronLeft className="mr-2 h-5 w-5" /> Back to {selectedCategory.name}
           </Button>
@@ -180,7 +185,7 @@ export default function HomePage() {
               description={selectedItem.description}
             />
           </div>
-        </>
+        </div>
       )}
     </main>
   );
