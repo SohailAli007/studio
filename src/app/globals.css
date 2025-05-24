@@ -8,17 +8,17 @@ body {
 
 @layer base {
   :root {
-    --background: 200 30% 95%; /* Light Cool Gray - Updated for login page theme */
-    --foreground: 0 0% 3.9%; /* Default dark for contrast */
+    --background: 0 67% 96%; /* Very light red (#FAF0F0) */
+    --foreground: 0 0% 3.9%;
 
-    --card: 0 0% 100%; /* White cards */
-    --card-foreground: 0 0% 3.9%; /* Dark text on cards */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
 
-    --primary: 355 78% 56%; /* #E63946 */
-    --primary-foreground: 0 0% 98%; /* Light text for contrast on primary */
+    --primary: 355 78% 56%; /* Saturated red (#E63946) */
+    --primary-foreground: 0 0% 98%;
 
     --secondary: 0 0% 96.1%;
     --secondary-foreground: 0 0% 9%;
@@ -26,14 +26,14 @@ body {
     --muted: 0 0% 96.1%;
     --muted-foreground: 0 0% 45.1%;
 
-    --accent: 27 89% 67%; /* #F4A261 */
-    --accent-foreground: 0 0% 10%; /* Dark text for contrast on accent */
+    --accent: 27 89% 67%; /* Analogous orange (#F4A261) */
+    --accent-foreground: 0 0% 10%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 200 20% 88%; /* Adjusted for new theme */
-    --input: 200 20% 92%; /* Adjusted for new theme */
+    --border: 0 50% 90%; /* Adjusted for reddish theme */
+    --input: 0 50% 93%; /* Adjusted for reddish theme */
     --ring: 355 78% 56%; /* Primary color for focus rings */
 
     --chart-1: 12 76% 61%;
@@ -43,7 +43,7 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
 
-    /* Sidebar variables - can be kept as default or themed if sidebar is used */
+    /* Sidebar variables */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -55,16 +55,16 @@ body {
   }
 
   .dark {
-    --background: 200 10% 10%; /* Dark Cool Gray for dark mode */
+    --background: 0 0% 10%; /* Dark Cool Gray for dark mode (remains neutral) */
     --foreground: 0 0% 98%;
 
-    --card: 200 10% 10%;
+    --card: 0 0% 10%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 200 10% 10%;
+    --popover: 0 0% 10%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 355 78% 56%; /* #E63946 */
+    --primary: 355 78% 56%;
     --primary-foreground: 0 0% 98%;
 
     --secondary: 0 0% 14.9%;
@@ -73,14 +73,14 @@ body {
     --muted: 0 0% 14.9%;
     --muted-foreground: 0 0% 63.9%;
 
-    --accent: 27 89% 67%; /* #F4A261 */
+    --accent: 27 89% 67%;
     --accent-foreground: 0 0% 10%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 200 15% 25%; /* Adjusted for dark theme */
-    --input: 200 15% 30%; /* Adjusted for dark theme */
+    --border: 0 0% 20%; /* Adjusted for dark theme */
+    --input: 0 0% 25%; /* Adjusted for dark theme */
     --ring: 355 78% 56%;
 
     --chart-1: 220 70% 50%;
