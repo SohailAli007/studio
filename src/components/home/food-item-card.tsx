@@ -16,13 +16,14 @@ interface FoodItemCardProps {
   amount: string;
   imageUrl: string;
   imageHint: string;
+  description?: string; // Added optional description
 }
 
-export function FoodItemCard({ dishName, amount, imageUrl, imageHint }: FoodItemCardProps) {
+export function FoodItemCard({ dishName, amount, imageUrl, imageHint, description }: FoodItemCardProps) {
   return (
     <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
       <CardHeader className="p-0">
-        <div className="relative w-full h-48">
+        <div className="relative w-full h-56"> {/* Increased height for better image display */}
           <Image
             src={imageUrl}
             alt={dishName}
@@ -34,6 +35,9 @@ export function FoodItemCard({ dishName, amount, imageUrl, imageHint }: FoodItem
       </CardHeader>
       <CardContent className="p-4 flex-grow">
         <CardTitle className="text-2xl mb-1">{dishName}</CardTitle>
+        {description && ( /* Display description if provided */
+          <p className="text-sm text-muted-foreground mb-2">{description}</p>
+        )}
         <CardDescription className="text-xl font-semibold text-primary">{amount}</CardDescription>
       </CardContent>
       <CardFooter className="p-4 pt-0">
@@ -45,3 +49,4 @@ export function FoodItemCard({ dishName, amount, imageUrl, imageHint }: FoodItem
     </Card>
   );
 }
+
