@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
-import { Card, CardContent } from '@/components/ui/card';
+// Removed Card, CardContent imports as they are not used
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -17,9 +17,9 @@ interface Offer {
 }
 
 const offersData: Offer[] = [
-  { id: '1', title: '20% Off All Pizzas!', description: 'Use code PIZZA20 at checkout. Limited time offer.', imageUrl: 'https://placehold.co/1200x350.png', imageHint: 'pizza food' },
-  { id: '2', title: 'Weekend Special', description: 'Free Appetizer with any two main courses. Every Saturday & Sunday.', imageUrl: 'https://placehold.co/1200x350.png', imageHint: 'appetizer meal' },
-  { id: '3', title: 'Happy Hour Deals', description: '5-7 PM Daily: Buy 1 Get 1 Free on select drinks!', imageUrl: 'https://placehold.co/1200x350.png', imageHint: 'drinks cocktails' },
+  { id: '1', title: '20% Off All Pizzas!', description: 'Use code PIZZA20 at checkout. Limited time offer.', imageUrl: 'https://placehold.co/1200x400.png', imageHint: 'pizza food' },
+  { id: '2', title: 'Weekend Special', description: 'Free Appetizer with any two main courses. Every Saturday & Sunday.', imageUrl: 'https://placehold.co/1200x400.png', imageHint: 'appetizer meal' },
+  { id: '3', title: 'Happy Hour Deals', description: '5-7 PM Daily: Buy 1 Get 1 Free on select drinks!', imageUrl: 'https://placehold.co/1200x400.png', imageHint: 'drinks cocktails' },
 ];
 
 export function HeaderOffers() {
@@ -44,25 +44,15 @@ export function HeaderOffers() {
     return null;
   }
 
-  // Update placeholder image URLs to match new height if necessary
-  // For this change, I'm reducing overall height, so placeholder aspect ratio will change.
-  // If new image assets were used, they'd ideally match new dimensions.
-  // For placeholder, just updating the height reference in URL for clarity:
-  const updatedOffersData = offersData.map(offer => ({
-    ...offer,
-    imageUrl: offer.imageUrl.replace(/1200x400/g, '1200x350') // Adjust placeholder to reflect new aspect ratio intention
-  }));
-  
-  const currentOffer = updatedOffersData[currentIndex];
-
+  // const currentOffer = offersData[currentIndex]; // Not strictly needed if not used elsewhere
 
   return (
-    <section className="relative w-full h-[250px] md:h-[350px] overflow-hidden group"> {/* Reduced height */}
+    <section className="relative w-full h-[300px] md:h-[400px] overflow-hidden group"> {/* Increased height */}
       <div
         className="w-full h-full flex transition-transform duration-700 ease-in-out"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
-        {updatedOffersData.map((offer) => (
+        {offersData.map((offer) => (
           <div key={offer.id} className="w-full h-full flex-shrink-0 relative">
             <Image
               src={offer.imageUrl}
@@ -70,7 +60,7 @@ export function HeaderOffers() {
               data-ai-hint={offer.imageHint}
               layout="fill"
               objectFit="cover"
-              priority={offer.id === updatedOffersData[0].id} // Prioritize first image
+              priority={offer.id === offersData[0].id} // Prioritize first image
               className="brightness-75"
             />
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/30 p-4 text-center">
@@ -101,7 +91,7 @@ export function HeaderOffers() {
       </Button>
 
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-        {updatedOffersData.map((_, index) => (
+        {offersData.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
