@@ -3,17 +3,18 @@
 
 import React, { type PropsWithChildren } from 'react';
 import { SiteHeader } from '@/components/home/site-header';
-import { SiteFooter } from '@/components/home/site-footer'; // Import the new footer
+import { SiteFooter } from '@/components/home/site-footer';
 
 export default function HomeLayout({ children }: PropsWithChildren) {
   return (
     <div className="flex flex-col min-h-screen">
       <SiteHeader />
-      <div className="flex flex-1 flex-col">
+      {/* This div controls the main content and footer alignment and width */}
+      <div className="flex flex-1 flex-col w-full max-w-5xl ml-auto"> 
         <main className="flex-grow overflow-y-auto"> {/* Ensure main content can scroll */}
           {children}
         </main>
-        <SiteFooter /> {/* Use the new SiteFooter component */}
+        <SiteFooter />
       </div>
     </div>
   );
