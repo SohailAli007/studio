@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Facebook, Instagram, Twitter } from 'lucide-react';
+import { Facebook, Instagram, Twitter, Linkedin } from 'lucide-react'; // Added Linkedin
 
 export function SiteFooter() {
   const [currentYear, setCurrentYear] = useState<number | null>(null);
@@ -24,6 +24,9 @@ export function SiteFooter() {
           </Link>
           <Link href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
             <Twitter className="h-6 w-6 hover:text-primary transition-colors" />
+          </Link>
+          <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <Linkedin className="h-6 w-6 hover:text-primary transition-colors" />
           </Link>
         </div>
         <p>© {currentYear !== null ? currentYear : "..."} Gastronomic Getaway. All rights reserved.</p>
