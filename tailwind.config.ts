@@ -65,9 +65,7 @@ const config: Config = {
   				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
-  			},
-        'menu-gold': '#B08D57',
-        'menu-dark': '#1A1A1A',
+  			}
   		}
   	},
   	borderRadius: {
@@ -94,3 +92,5 @@ const config: Config = {
 };
 
 export default config;
+
+    
