@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
+import defaultTheme from 'tailwindcss/defaultTheme';
 
-export default {
+const config: Config = {
     darkMode: ["class"],
     content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,6 +10,10 @@ export default {
   ],
   theme: {
   	extend: {
+      fontFamily: {
+        sans: ['var(--font-geist-sans)', ...defaultTheme.fontFamily.sans],
+        mono: ['var(--font-geist-mono)', ...defaultTheme.fontFamily.mono],
+      },
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
@@ -60,8 +65,8 @@ export default {
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
   			},
-        'menu-gold': '#B08D57', // Custom gold color for menu accents
-        'menu-dark': '#1A1A1A', // Custom dark background for menu
+        'menu-gold': '#B08D57',
+        'menu-dark': '#1A1A1A',
   		}
   	},
   	borderRadius: {
@@ -71,27 +76,20 @@ export default {
   	},
   	keyframes: {
   		'accordion-down': {
-  			from: {
-  				height: '0'
-  			},
-  			to: {
-  				height: 'var(--radix-accordion-content-height)'
-  			}
+  			from: { height: '0' },
+  			to: { height: 'var(--radix-accordion-content-height)' }
   		},
   		'accordion-up': {
-  			from: {
-  				height: 'var(--radix-accordion-content-height)'
-  			},
-  			to: {
-  				height: '0'
-  			}
+  			from: { height: 'var(--radix-accordion-content-height)' },
+  			to: { height: '0' }
   		}
   	},
   	animation: {
   		'accordion-down': 'accordion-down 0.2s ease-out',
   		'accordion-up': 'accordion-up 0.2s ease-out'
   	}
-  }
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+};
+
+export default config;
