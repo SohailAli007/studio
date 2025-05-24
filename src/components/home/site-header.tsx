@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
@@ -14,50 +14,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChefHat, LogOut, UserCircle, ShoppingCart, PackageIcon, Sun, Moon } from 'lucide-react';
+import { ChefHat, LogOut, UserCircle, ShoppingCart, PackageIcon } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { Switch } from "@/components/ui/switch";
 
 export function SiteHeader() {
   const router = useRouter();
   const { toast } = useToast();
-
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  // Effect to set mounted state and load theme from localStorage
-  useEffect(() => {
-    setMounted(true);
-    const storedTheme = localStorage.getItem('theme');
-    if (storedTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-      setIsDarkTheme(true);
-    } else {
-      // Default to light theme if no theme is stored or if it's explicitly 'light'
-      document.documentElement.classList.remove('dark');
-      setIsDarkTheme(false);
-      if (!storedTheme) {
-        localStorage.setItem('theme', 'light');
-      }
-    }
-  }, []);
-
-  // Effect to apply theme changes and update localStorage
-  useEffect(() => {
-    if (!mounted) return; // Don't run on initial server render before hydration
-
-    if (isDarkTheme) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [isDarkTheme, mounted]);
-
-  const toggleTheme = () => {
-    setIsDarkTheme(prev => !prev);
-  };
 
   // Placeholder user data for avatar
   const user = {
@@ -65,29 +27,6 @@ export function SiteHeader() {
     initials: "AD",
     avatarUrl: "https://placehold.co/40x40.png"
   };
-
-  // Avoid rendering theme-dependent UI until mounted to prevent hydration mismatch
-  const renderThemeToggle = () => {
-    if (!mounted) {
-      // Render a placeholder or nothing to prevent hydration issues
-      // For simplicity, rendering a minimal fixed-size div.
-      // A better approach might be specific skeleton UI or CSS to reserve space.
-      return <div style={{ width: '100px', height: '32px' }} />; // Approx size of the switch + icons
-    }
-    return (
-      <div className="flex items-center p-1 rounded-full border bg-background mr-2">
-        <Sun className={`h-5 w-5 text-muted-foreground transition-all ${!isDarkTheme ? 'opacity-100 text-primary' : 'opacity-50'}`} />
-        <Switch
-          checked={isDarkTheme}
-          onCheckedChange={toggleTheme}
-          className="mx-2"
-          aria-label="Toggle theme"
-        />
-        <Moon className={`h-5 w-5 text-muted-foreground transition-all ${isDarkTheme ? 'opacity-100 text-primary' : 'opacity-50'}`} />
-      </div>
-    );
-  };
-
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -97,7 +36,6 @@ export function SiteHeader() {
           <span>Gastronomic Getaway</span>
         </Link>
         <div className="flex items-center space-x-2">
-          {renderThemeToggle()}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="relative h-10 w-10 rounded-full">
