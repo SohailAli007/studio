@@ -60,12 +60,12 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
+      <div className="flex h-16 w-full items-center justify-between px-6"> {/* Changed from 'container' to 'w-full px-6' */}
         <Link href="/home" className="flex items-center space-x-2 text-xl font-bold text-primary">
           <ChefHat size={32} />
           <span>Gastronomic Getaway</span>
         </Link>
-        <div className="flex items-center space-x-4"> {/* Increased space-x for switch */}
+        <div className="flex items-center space-x-4">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="relative h-10 w-10 rounded-full">
@@ -106,7 +106,7 @@ export function SiteHeader() {
               <DropdownMenuItem onSelect={(e) => e.preventDefault()} className="cursor-default focus:bg-transparent">
                 <div className="flex items-center justify-between w-full">
                   <div className="flex items-center">
-                    {theme === 'light' ? <Sun className="mr-2 h-4 w-4" /> : <Moon className="mr-2 h-4 w-4" />}
+                    {theme === 'light' ? <Sun className={cn("mr-2 h-4 w-4", theme === 'light' ? 'text-accent' : '')} /> : <Moon className={cn("mr-2 h-4 w-4", theme === 'dark' ? 'text-accent' : '')} />}
                     <span>Theme</span>
                   </div>
                   <Switch
