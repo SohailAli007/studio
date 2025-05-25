@@ -13,7 +13,7 @@ export function SiteFooter() {
   }, []);
 
   return (
-    <footer className="py-8 text-center text-muted-foreground border-t">
+    <footer className="py-8 text-center text-foreground/80 border-t"> {/* Changed text-muted-foreground to text-foreground/80 */}
       <div className="container mx-auto">
         <div className="flex justify-center space-x-6 mb-4">
           <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
