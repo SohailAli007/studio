@@ -18,9 +18,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Lock } from "lucide-react";
-import React from "react";
+import { Mail, Lock, Sun, Moon } from "lucide-react";
+import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
 const loginFormSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
@@ -32,7 +34,35 @@ type LoginFormValues = z.infer<typeof loginFormSchema>;
 export function LoginForm() {
   const router = useRouter();
   const { toast } = useToast();
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
+    if (storedTheme) {
+      setTheme(storedTheme);
+      if (storedTheme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    } else {
+      // Default to light theme if no preference is stored
+      localStorage.setItem("theme", "light");
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    if (newTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  };
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginFormSchema),
@@ -56,8 +86,8 @@ export function LoginForm() {
   return (
     <Card className={cn(
       "w-full max-w-md shadow-xl",
-      "bg-gradient-to-br from-[hsl(var(--card)/0.65)] via-[hsl(var(--card)/0.55)] to-[hsl(var(--card)/0.65)] backdrop-blur-lg", // Increased transparency
-      "border-white/20" // Optional: subtle border
+      "bg-gradient-to-br from-[hsl(var(--card)/0.65)] via-[hsl(var(--card)/0.55)] to-[hsl(var(--card)/0.65)] backdrop-blur-lg",
+      "border-white/20"
     )}>
       <CardHeader>
         <CardTitle className="text-2xl text-card-foreground">Login</CardTitle>
@@ -124,7 +154,17 @@ export function LoginForm() {
             </Button>
           </form>
         </Form>
-        <p className="mt-6 text-center text-sm text-muted-foreground">
+        <div className="mt-6 flex items-center justify-center space-x-2">
+          <Sun className={cn("h-5 w-5", theme === 'light' ? 'text-accent' : 'text-muted-foreground')} />
+          <Switch
+            id="theme-switch-login"
+            checked={theme === "dark"}
+            onCheckedChange={toggleTheme}
+            aria-label="Toggle theme"
+          />
+          <Moon className={cn("h-5 w-5", theme === 'dark' ? 'text-accent' : 'text-muted-foreground')} />
+        </div>
+        <p className="mt-4 text-center text-sm text-muted-foreground">
           Don't have an account?{" "}
           <Link href="/register" className="font-medium text-primary hover:underline">
             Register here
