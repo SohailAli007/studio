@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { FoodItemCard } from '@/components/home/food-item-card';
 import { HeaderOffers } from '@/components/home/header-offers';
@@ -25,10 +26,10 @@ const menuData: MenuCategory[] = [
     name: "Appetizers",
     items: [
       { name: "Garlic Bread", price: "$50.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "garlic bread", description: "Classic garlic bread with a crispy crust and rich butter." },
-      { name: "Bruschetta", price: "$45.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "bruschetta", description: "Toasted bread topped with fresh tomatoes, garlic, basil, and olive oil." },
+      { name: "Bruschetta", price: "$45.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "bruschetta tomato", description: "Toasted bread topped with fresh tomatoes, garlic, basil, and olive oil." },
       { name: "Stuffed Mushrooms", price: "$48.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "stuffed mushrooms", description: "Mushrooms filled with a savory blend of herbs, breadcrumbs, and cheese." },
       { name: "Shrimp Cocktail", price: "$52.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "shrimp cocktail", description: "Chilled jumbo shrimp served with a tangy cocktail sauce." },
-      { name: "Caprese Skewers", price: "$47.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "caprese salad", description: "Cherry tomatoes, fresh mozzarella, and basil drizzled with balsamic glaze." },
+      { name: "Caprese Skewers", price: "$47.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "caprese skewers", description: "Cherry tomatoes, fresh mozzarella, and basil drizzled with balsamic glaze." },
       { name: "Spinach Artichoke Dip", price: "$55.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "artichoke dip", description: "Creamy spinach and artichoke dip served with tortilla chips or bread."}
     ],
   },
@@ -39,7 +40,7 @@ const menuData: MenuCategory[] = [
       { name: "Minestrone Soup", price: "$45.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "minestrone soup", description: "A hearty Italian vegetable soup with pasta and beans." },
       { name: "Greek Salad", price: "$48.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "greek salad", description: "Tomatoes, cucumbers, olives, feta cheese, and a light vinaigrette." },
       { name: "Lobster Bisque", price: "$52.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "lobster bisque", description: "A creamy and rich soup made with fresh lobster stock and meat." },
-      { name: "Asian Chicken Salad", price: "$53.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "chicken salad", description: "Grilled chicken, mixed greens, mandarin oranges, and a sesame ginger dressing." },
+      { name: "Asian Chicken Salad", price: "$53.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "asian salad", description: "Grilled chicken, mixed greens, mandarin oranges, and a sesame ginger dressing." },
       { name: "Tomato Basil Soup", price: "$46.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "tomato soup", description: "Creamy tomato soup infused with fresh basil."}
     ],
   },
@@ -68,23 +69,23 @@ const menuData: MenuCategory[] = [
   {
     name: "Desserts",
     items: [
-      { name: "Tiramisu", price: "$50.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "tiramisu dessert", description: "Classic Italian coffee-flavored dessert with ladyfingers, mascarpone, and cocoa." },
+      { name: "Tiramisu", price: "$50.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "tiramisu slice", description: "Classic Italian coffee-flavored dessert with ladyfingers, mascarpone, and cocoa." },
       { name: "Chocolate Lava Cake", price: "$45.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "lava cake", description: "Warm chocolate cake with a molten chocolate center, served with vanilla ice cream." },
       { name: "Crème Brûlée", price: "$48.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "creme brulee", description: "Rich custard base topped with a layer of hardened caramelized sugar." },
       { name: "New York Cheesecake", price: "$52.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "cheesecake slice", description: "Creamy New York style cheesecake with a graham cracker crust and berry coulis." },
-      { name: "Apple Crumble", price: "$47.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "apple pie", description: "Warm spiced apples topped with a buttery crumble, served with caramel sauce." },
+      { name: "Apple Crumble", price: "$47.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "apple crumble", description: "Warm spiced apples topped with a buttery crumble, served with caramel sauce." },
       { name: "Panna Cotta", price: "$46.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "panna cotta", description: "Italian cooked cream dessert, often flavored with vanilla and served with fruit."}
     ],
   },
   {
     name: "Beverages",
     items: [
-      { name: "Coca-Cola", price: "$10.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "soda can", description: "Classic Coca-Cola, served chilled." },
-      { name: "Orange Juice", price: "$15.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "juice glass", description: "Freshly squeezed orange juice." },
+      { name: "Coca-Cola", price: "$10.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "coke can", description: "Classic Coca-Cola, served chilled." },
+      { name: "Orange Juice", price: "$15.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "orange juice", description: "Freshly squeezed orange juice." },
       { name: "Iced Lemon Tea", price: "$12.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "iced tea", description: "Refreshing iced tea with a hint of lemon." },
-      { name: "Espresso", price: "$18.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "espresso cup", description: "Strong and aromatic Italian espresso." },
-      { name: "Sparkling Water", price: "$8.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "water bottle", description: "Chilled sparkling mineral water."},
-      { name: "Red Wine (Glass)", price: "$25.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "wine glass", description: "A glass of our house red wine selection."}
+      { name: "Espresso", price: "$18.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "espresso shot", description: "Strong and aromatic Italian espresso." },
+      { name: "Sparkling Water", price: "$8.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "sparkling water", description: "Chilled sparkling mineral water."},
+      { name: "Red Wine (Glass)", price: "$25.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "red wine", description: "A glass of our house red wine selection."}
     ],
   },
   {
@@ -92,7 +93,7 @@ const menuData: MenuCategory[] = [
     items: [
       { name: "French Fries", price: "$15.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "french fries", description: "Crispy golden French fries, lightly salted." },
       { name: "Onion Rings", price: "$18.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "onion rings", description: "Battered and deep-fried onion rings." },
-      { name: "Side Salad", price: "$20.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "side salad", description: "Mixed greens with cherry tomatoes, cucumber, and choice of dressing." },
+      { name: "Side Salad", price: "$20.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "garden salad", description: "Mixed greens with cherry tomatoes, cucumber, and choice of dressing." },
       { name: "Steamed Vegetables", price: "$22.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "steamed vegetables", description: "A healthy mix of seasonal steamed vegetables." },
       { name: "Garlic Mashed Potatoes", price: "$20.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "mashed potatoes", description: "Creamy mashed potatoes infused with roasted garlic."}
     ]
