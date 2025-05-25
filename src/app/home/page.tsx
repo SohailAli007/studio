@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { FoodItemCard } from '@/components/home/food-item-card';
 import { HeaderOffers } from '@/components/home/header-offers';
-import { SiteFooter } from '@/components/home/site-footer'; // Import SiteFooter
+import { SiteFooter } from '@/components/home/site-footer';
 import { ChevronLeft, ExternalLink } from 'lucide-react';
 
 interface MenuItem {
@@ -102,7 +102,6 @@ const menuData: MenuCategory[] = [
   }
 ];
 
-
 export default function HomePage() {
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
   const scrollPositionRef = useRef<number | null>(null);
@@ -112,6 +111,9 @@ export default function HomePage() {
     if (scrollableMain) {
       scrollPositionRef.current = scrollableMain.scrollTop;
     } else {
+      // Fallback if the specific selector isn't found.
+      // This could lead to scrolling to top if selector fails.
+      console.warn("Scrollable main element not found in handleItemSelect. Defaulting scroll to 0.");
       scrollPositionRef.current = 0; 
     }
     setSelectedItem(item);
@@ -119,27 +121,28 @@ export default function HomePage() {
 
   const handleBackToMenu = () => {
     setSelectedItem(null);
+    // Scroll restoration is handled by useEffect
   };
 
   useEffect(() => {
-    if (selectedItem === null && scrollPositionRef.current !== null) {
+    if (selectedItem === null && typeof scrollPositionRef.current === 'number') {
       const scrollableMain = document.querySelector('main.flex-grow.overflow-y-auto');
       if (scrollableMain) {
         requestAnimationFrame(() => {
-          if (scrollPositionRef.current !== null) { 
-             scrollableMain.scrollTo(0, scrollPositionRef.current);
+          if (typeof scrollPositionRef.current === 'number') {
+             scrollableMain.scrollTop = scrollPositionRef.current;
           }
         });
+      } else {
+         console.warn("Scrollable main element not found in useEffect for scroll restoration.");
       }
-      const timer = setTimeout(() => {
-        scrollPositionRef.current = null;
-      }, 100); 
-      return () => clearTimeout(timer);
+      // Do not reset scrollPositionRef.current to null here.
+      // It will be updated on the next item selection.
     }
   }, [selectedItem]);
 
   return (
-    <div className="w-full"> {/* Removed container from main wrapper */}
+    <div className="w-full"> {/* Main wrapper for HomePage content */}
       {!selectedItem ? (
         <>
           <HeaderOffers />
