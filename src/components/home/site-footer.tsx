@@ -13,7 +13,7 @@ export function SiteFooter() {
   }, []);
 
   return (
-    <footer className="py-8 text-center text-yellow-300 border-t"> {/* Changed text color to light yellow */}
+    <footer className="py-8 text-center text-foreground/80 dark:text-yellow-300 border-t">
       <div className="container mx-auto">
         <div className="flex justify-center space-x-6 mb-4">
           <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
