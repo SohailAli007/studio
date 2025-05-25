@@ -3,7 +3,7 @@
 
 import React, { type PropsWithChildren } from 'react';
 import { SiteHeader } from '@/components/home/site-header';
-import { SiteFooter } from '@/components/home/site-footer';
+// SiteFooter import removed
 
 export default function HomeLayout({ children }: PropsWithChildren) {
   return (
@@ -14,7 +14,7 @@ export default function HomeLayout({ children }: PropsWithChildren) {
         <main className="flex-grow overflow-y-auto"> {/* Ensure main content can scroll */}
           {children}
         </main>
-        <SiteFooter />
+        {/* SiteFooter usage removed from here */}
       </div>
     </div>
   );
