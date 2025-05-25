@@ -1,12 +1,12 @@
 
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { FoodItemCard } from '@/components/home/food-item-card';
 import { HeaderOffers } from '@/components/home/header-offers';
-import { ChevronLeft, ExternalLink } from 'lucide-react'; // Added ExternalLink
+import { ChevronLeft, ExternalLink } from 'lucide-react';
 
 interface MenuItem {
   name: string;
@@ -14,7 +14,7 @@ interface MenuItem {
   imageUrl: string;
   imageHint: string;
   description: string;
-  imageSearchUrl?: string; // New property for Google Image search link
+  imageSearchUrl?: string;
 }
 
 interface MenuCategory {
@@ -29,18 +29,18 @@ const menuData: MenuCategory[] = [
       { name: "Garlic Bread", price: "$50.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "garlic bread", description: "Classic garlic bread with a crispy crust and rich butter.", imageSearchUrl: `https://www.google.com/search?tbm=isch&q=${encodeURIComponent("Garlic Bread food dish")}` },
       { name: "Bruschetta", price: "$45.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "bruschetta tomato", description: "Toasted bread topped with fresh tomatoes, garlic, basil, and olive oil.", imageSearchUrl: `https://www.google.com/search?tbm=isch&q=${encodeURIComponent("Bruschetta food dish")}` },
       { name: "Stuffed Mushrooms", price: "$48.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "stuffed mushrooms", description: "Mushrooms filled with a savory blend of herbs, breadcrumbs, and cheese.", imageSearchUrl: `https://www.google.com/search?tbm=isch&q=${encodeURIComponent("Stuffed Mushrooms food dish")}` },
-      { name: "Shrimp Cocktail", price: "$52.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "shrimp cocktail", description: "Chilled jumbo shrimp served with a tangy cocktail sauce.", imageSearchUrl: `https://www.google.com/search?tbm=isch&q=${encodeURIComponent("Shrimp Cocktail food dish")}` },
-      { name: "Caprese Skewers", price: "$47.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "caprese skewers", description: "Cherry tomatoes, fresh mozzarella, and basil drizzled with balsamic glaze.", imageSearchUrl: `https://www.google.com/search?tbm=isch&q=${encodeURIComponent("Caprese Skewers food dish")}` },
-      { name: "Spinach Artichoke Dip", price: "$55.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "artichoke dip", description: "Creamy spinach and artichoke dip served with tortilla chips or bread.", imageSearchUrl: `https://www.google.com/search?tbm=isch&q=${encodeURIComponent("Spinach Artichoke Dip food dish")}`}
+      { name: "Shrimp Cocktail", price: "$52.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "shrimp cocktail seafood", description: "Chilled jumbo shrimp served with a tangy cocktail sauce.", imageSearchUrl: `https://www.google.com/search?tbm=isch&q=${encodeURIComponent("Shrimp Cocktail food dish")}` },
+      { name: "Caprese Skewers", price: "$47.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "caprese skewers salad", description: "Cherry tomatoes, fresh mozzarella, and basil drizzled with balsamic glaze.", imageSearchUrl: `https://www.google.com/search?tbm=isch&q=${encodeURIComponent("Caprese Skewers food dish")}` },
+      { name: "Spinach Artichoke Dip", price: "$55.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "artichoke dip appetizer", description: "Creamy spinach and artichoke dip served with tortilla chips or bread.", imageSearchUrl: `https://www.google.com/search?tbm=isch&q=${encodeURIComponent("Spinach Artichoke Dip food dish")}`}
     ],
   },
   {
     name: "Soups and Salads",
     items: [
-      { name: "Caesar Salad", price: "$50.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "caesar salad", description: "Crisp romaine lettuce, Parmesan cheese, croutons, and Caesar dressing.", imageSearchUrl: `https://www.google.com/search?tbm=isch&q=${encodeURIComponent("Caesar Salad food dish")}` },
-      { name: "Minestrone Soup", price: "$45.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "minestrone soup", description: "A hearty Italian vegetable soup with pasta and beans.", imageSearchUrl: `https://www.google.com/search?tbm=isch&q=${encodeURIComponent("Minestrone Soup food dish")}` },
-      { name: "Greek Salad", price: "$48.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "greek salad", description: "Tomatoes, cucumbers, olives, feta cheese, and a light vinaigrette.", imageSearchUrl: `https://www.google.com/search?tbm=isch&q=${encodeURIComponent("Greek Salad food dish")}` },
-      { name: "Lobster Bisque", price: "$52.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "lobster bisque", description: "A creamy and rich soup made with fresh lobster stock and meat.", imageSearchUrl: `https://www.google.com/search?tbm=isch&q=${encodeURIComponent("Lobster Bisque food dish")}` },
+      { name: "Caesar Salad", price: "$50.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "caesar salad chicken", description: "Crisp romaine lettuce, Parmesan cheese, croutons, and Caesar dressing.", imageSearchUrl: `https://www.google.com/search?tbm=isch&q=${encodeURIComponent("Caesar Salad food dish")}` },
+      { name: "Minestrone Soup", price: "$45.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "minestrone soup bowl", description: "A hearty Italian vegetable soup with pasta and beans.", imageSearchUrl: `https://www.google.com/search?tbm=isch&q=${encodeURIComponent("Minestrone Soup food dish")}` },
+      { name: "Greek Salad", price: "$48.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "greek salad feta", description: "Tomatoes, cucumbers, olives, feta cheese, and a light vinaigrette.", imageSearchUrl: `https://www.google.com/search?tbm=isch&q=${encodeURIComponent("Greek Salad food dish")}` },
+      { name: "Lobster Bisque", price: "$52.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "lobster bisque soup", description: "A creamy and rich soup made with fresh lobster stock and meat.", imageSearchUrl: `https://www.google.com/search?tbm=isch&q=${encodeURIComponent("Lobster Bisque food dish")}` },
       { name: "Asian Chicken Salad", price: "$53.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "asian chicken salad", description: "Grilled chicken, mixed greens, mandarin oranges, and a sesame ginger dressing.", imageSearchUrl: `https://www.google.com/search?tbm=isch&q=${encodeURIComponent("Asian Chicken Salad food dish")}` },
       { name: "Tomato Basil Soup", price: "$46.00", imageUrl: "https://placehold.co/300x200.png", imageHint: "tomato basil soup", description: "Creamy tomato soup infused with fresh basil.", imageSearchUrl: `https://www.google.com/search?tbm=isch&q=${encodeURIComponent("Tomato Basil Soup food dish")}`}
     ],
@@ -104,14 +104,45 @@ const menuData: MenuCategory[] = [
 
 export default function HomePage() {
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
+  const scrollPositionRef = useRef<number | null>(null);
 
   const handleItemSelect = (item: MenuItem) => {
+    const scrollableMain = document.querySelector('main.flex-grow.overflow-y-auto');
+    if (scrollableMain) {
+      scrollPositionRef.current = scrollableMain.scrollTop;
+    } else {
+      scrollPositionRef.current = 0; // Fallback to top if element not found
+    }
     setSelectedItem(item);
   };
 
   const handleBackToMenu = () => {
     setSelectedItem(null);
   };
+
+  useEffect(() => {
+    if (selectedItem === null && scrollPositionRef.current !== null) {
+      const scrollableMain = document.querySelector('main.flex-grow.overflow-y-auto');
+      if (scrollableMain) {
+        // Use requestAnimationFrame to ensure the layout is stable before scrolling
+        requestAnimationFrame(() => {
+          if (scrollPositionRef.current !== null) { // Double check ref has not been nulled
+             scrollableMain.scrollTo(0, scrollPositionRef.current);
+          }
+        });
+      }
+      // It's important to reset the ref after attempting scroll,
+      // but only after the scroll has had a chance to occur.
+      // A small timeout can also work here if requestAnimationFrame is not enough.
+      // For simplicity and to avoid race conditions, we might reset it slightly later
+      // or rely on the fact that it will be overwritten on next item select.
+      // Let's reset it here after a small delay to ensure scroll has happened.
+      const timer = setTimeout(() => {
+        scrollPositionRef.current = null;
+      }, 100); // 100ms delay
+      return () => clearTimeout(timer);
+    }
+  }, [selectedItem]);
 
   return (
     <div className="w-full"> {/* Removed container from main wrapper */}
@@ -185,4 +216,4 @@ export default function HomePage() {
     </div>
   );
 }
-
+    
